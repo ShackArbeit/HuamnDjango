@@ -6,42 +6,54 @@
       <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <style>
+        #navbarNav {
+            left: 400px; 
+        }
+        .navbar-brand {
+            left: 100px;
+        }
+        .navbar{
+          bottom:10px;
+        }
+    </style>
       <title>Header</title>
 </head>
 <body>
-  <nav class="navbar navbar-expand-lg bg-body-tertiary">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">
-        <!-- <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYLJrTiLSN3wmU9cqr5dl6ARfd-Yvj6XsJaJcTBUb9xg&s" alt="Bootstrap" width="50" height="50"> -->
-        Navbar
+  <nav class="navbar navbar-expand-lg bg-body-tertiary  position-relative"
+  style="width:100%"
+  >
+    <div class="container-fluid  bg-black  p-2 ">
+      <a class="navbar-brand  position-relative text-white" href="#">
+        <img src="https://pbs.twimg.com/profile_images/1719610750879338496/FVl3T7Ip_400x400.png " alt="Bootstrap" width="50" height="50"
+        class="mx-4"> 
+        當人類圖遇見八字
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
+      <div class="collapse navbar-collapse position-relative " id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="">首頁</a>
+            <a class="nav-link active text-white " aria-current="page" href="">首頁</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="">什麼是人類圖</a>
+            <a class="nav-link text-white " href="">什麼是人類圖</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="">認識 Jerome</a>
+            <a class="nav-link text-white " href="">認識 Jerome</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="">預約諮詢</a>
+            <a class="nav-link text-white " href="">預約諮詢</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="">免費音檔</a>
+            <a class="nav-link text-white " href="">免費音檔</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="">聯絡我們</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+            <a class="nav-link  text-white" href="">聯絡我們</a>
           </li>
         </ul>
+        
       </div>
     </div>
   </nav>
