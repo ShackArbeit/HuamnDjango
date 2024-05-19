@@ -1,6 +1,7 @@
 from django.shortcuts import render
-
+from .models import FreeVideos
 
 
 def FreeInfomation(request):
-      return render(request,'./CardInfo.html')
+      videos=FreeVideos.objects.all()
+      return render(request,'./CardInfo.html',locals())
