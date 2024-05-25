@@ -2,15 +2,10 @@
 
 {% block title %} 相關音檔 {% endblock %}
 
-<!-- {% block head %}
-<style>
-    body, html {
-        background-color: #f51901;
-    }
-</style>
-{% endblock %} -->
 {% block content %}
 <body style="background-color: #ffe899;">
+    <div class="container-fluid pt-3" style="background-color: #ffe899;
+   position:relative;bottom:18px">
 <div  style="margin:0 auto;max-width:600px;text-align: center;">
 <h3>
     JKの身心靈遊園車<br>
@@ -20,13 +15,13 @@
 陪伴你在不預期的人生旅程中 順流而行，開拓生命的無限可能！
 </p>
 </div>
-<div class="container" >
+<div class="container"  >
     <div class="container-fluid w-100 ">
         <div class="row w-100 ">
             {% for p in videos %}
             <div class="col-sm-12 col-md-6 col-lg-3 mb-4">
-                <div class="card text-center bg-info"  style="margin-left:.5rem;margin-right:.5rem;">
-                    <img src="https://images.chinatimes.com/newsphoto/2024-04-02/656/20240402004466.jpg" class="card-img-top" >
+                <div class="card text-center "  style="margin-left:.5rem;margin-right:.5rem;">
+                    <img src="{{ p.video_img }}"  class="card-img-top" >
                     <div class="card-body">
                         <h4 class="card-title fw-bold">{{ p.video_title }}</h4>
                         <p class="card-text fw-medium">
@@ -34,7 +29,8 @@
                         </p>
                     </div>
                     <div class="card-body">
-                        <a href="{{ p.video_link }}" class="card-link">
+                        <a href="{{ p.video_link }}" class="card-link" 
+                        target="_blank">
                             <button  type="button" class="btn btn-primary">觀看影片</button>
                         </a>
                     </div>
@@ -43,6 +39,7 @@
             {% endfor %}
         </div>
     </div>
+</div>
 </div>
 </body>
 {% endblock %}
