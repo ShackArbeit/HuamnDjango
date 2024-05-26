@@ -10,6 +10,8 @@ class FreeVideos(models.Model):
 
       class Meta:
             ordering=('-pub_date',)
+            verbose_name = '免費音檔'
+            verbose_name_plural = '免費音檔'
 
       def __str__(self):
             return self.video_title
