@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block title %} 人類圖簡介  {% endblock %}
+
+{% block content %}
+<head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet"  href="../../static/css/index.css">
+      <title>簡介首頁</title>
+</head>
+<body style=" background: linear-gradient(to right, 
+#000 0%,
+#333 20%,
+transparent 50%,
+#333 80%,
+#000 100%
+)">
+      <div class="container-fluid " style=" width:100%;
+      padding-top: 30px;
+      padding-bottom: 20px;
+      text-align:center; 
+      color:white;
+      position: relative;
+      bottom:20px;
+      background: linear-gradient(to right, 
+      #000 0%,
+      #333 20%,
+      transparent 50%,
+      #333 80%,
+      #000 100%
+    );
+    text-align: center;">
+    <div style="max-width:400px;margin:0 auto;">
+    <h1 style="font-size: 25px;font-weight: 700;color:red">What is Human Design ?
+        <p  style="font-size: 18px;font-weight: 300;color:red;
+        position: relative;top:5px">
+        請滑看並點擊以下圖片看看你對人類圖懂多少吧 !
+    </p>
+    </h1>
+    </div>
+        <div class="HoverHumanDesignWarap" >
+          {% for design in designs %}
+          <a  style="cursor:pointer" href="/what/{{design.content_url}}" >
+            <div class='HoverHumanDesignItem'>
+            <img src={{design.img_url}}/>
+            <div class='HoverHumanDesignText'>
+                <h3>{{ design.title }}</h3>
+                <p>{{ design.content }}</p>
+            </div> 
+            </div>
+        </a>
+          {% endfor %}
+        </div>
+    </div>
+</body>
+{% endblock %}
