@@ -7,7 +7,7 @@ class WhatAdmin(admin.ModelAdmin):
 
 # 人類圖是你的使用說明部分
 class Your_Books(admin.ModelAdmin):
-      list_display=('layout_key','title','content','imgs_url')
+      list_display=('id','layout_key','title','content','imgs_url')
 
 
 admin.site.register(LayoutWhat,WhatAdmin)
