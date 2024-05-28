@@ -35,3 +35,10 @@ class YourBooks(HumanContentCommon):
         verbose_name = '人類圖是你的人生使用說明書部分(索引值1)'
         verbose_name_plural = '人類圖是你的人生使用說明書部分(索引值1)'
 
+# 類型 = 你的天職部分
+class YourType(HumanContentCommon):
+      class Meta:
+         verbose_name = '類型 = 你的天職(索引值2)'
+         verbose_name_plural = '類型 = 你的天職(索引值2)'
+
+

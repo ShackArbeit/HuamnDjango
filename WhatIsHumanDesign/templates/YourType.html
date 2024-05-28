@@ -1,40 +1,40 @@
 {% extends 'base.html' %}
-{% block title %} 人類圖是你的人生使用說明書 {% endblock %}
+{% block title %} 類型 = 你的天職 {% endblock %}
 {% block content %}
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../static/css/WhatDetails.css">
-    <title>人類圖是你的人生使用說明書</title>
+    <title>類型 = 你的天職 </title>
 </head>
 <body style="background: linear-gradient(to right, #000 0%, #333 20%, transparent 50%, #333 80%, #000 100%);">
     <div class='HumanDesignWrap'>
-      <h1 class="HumanDesignMainTitle">人類圖是你的人生使用說明書</h1>
-        {% for book in your_books %}
+      <h1 class="HumanDesignMainTitle">知悉天賦比努力更重要 ! </h1>
+        {% for type in your_types %}
         <div class="GelleryContainer">
             <div class="row " style="margin-bottom:20px; border-bottom:1px solid #c4c4c4;">
                 {% if forloop.counter0|divisibleby:2 %}
                 <div class="col-md-6 col-xs-12">
                     <div class="GelleryImageContainer">
-                        <img src={{book.imgs_url}} class="GelleryImage">
+                        <img src={{type.imgs_url}} class="GelleryImage">
                     </div>
                 </div>
                 <div class="col-md-6 col-xs-12">
                     <div class="textContainer">
-                        <h2>{{ book.title }}</h2>
-                        <p>{{ book.content }}</p>
+                        <h2>{{ type.title }}</h2>
+                        <p>{{ type.content }}</p>
                     </div>
                 </div>
                 {% else %}
                 <div class="col-md-6 col-xs-12">
                     <div class="textContainer">
-                        <h2>{{ book.title }}</h2>
-                        <p>{{ book.content }}</p>
+                        <h2>{{ type.title }}</h2>
+                        <p>{{ type.content }}</p>
                     </div>
                 </div>
                 <div class="col-md-6 col-xs-12">
                     <div class="GelleryImageContainer">
-                        <img src={{book.imgs_url}} class="GelleryImage">
+                        <img src={{type.imgs_url}} class="GelleryImage">
                     </div>
                 </div>
                 {% endif %}
