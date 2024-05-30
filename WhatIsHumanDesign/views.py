@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import LayoutWhat,YourBooks,YourType
+from .models import LayoutWhat,YourBooks,YourType,YourRole,YourAuth,YourEnergy,YourRoad
 
 def Hover_Layout(request):
       designs=LayoutWhat.objects.all()
@@ -16,3 +16,22 @@ def Human_Types(request):
        your_types=YourType.objects.all()
        return render(request,'YourType.html',locals())
 
+# 人生角色 的部分
+def Human_Roles(request):
+       your_roles=YourRole.objects.all()
+       return render(request,'YourRole.html',locals())
+
+# 內在權威 = 做決定的方法 的部分
+def Human_Auths(request):
+       your_auths=YourAuth.objects.all()
+       return render(request,'YourAuth.html',locals())
+
+# 能量中心 = 你的強弱 的部分
+def Human_Energys(request):
+       your_enrygys=YourEnergy.objects.all()
+       return render(request,'YourEnergy.html',locals())
+
+# 通道 = 你的天賦 的部分
+def Human_Roads(request):
+       your_roads=YourRoad.objects.all()
+       return render(request,'YourRoad.html',locals())

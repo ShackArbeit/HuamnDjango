@@ -35,4 +35,29 @@ class YourType(HumanContentCommon):
          verbose_name = '類型 = 你的天職(索引值2)'
          verbose_name_plural = '類型 = 你的天職(索引值2)'
 
+# 人生角色 的部分
+class YourRole(HumanContentCommon):
+      class Meta:
+         verbose_name = '人生角色(索引值3)'
+         verbose_name_plural = '人生角色(索引值3)'
 
+
+# 內在權威 = 做決定的方法 的部分
+class YourAuth(HumanContentCommon):
+      class Meta:
+         verbose_name = '內在權威 = 做決定的方法(索引值4)'
+         verbose_name_plural = '內在權威 = 做決定的方法(索引值4)'
+
+# 能量中心 = 你的強弱 的部分
+class YourEnergy(HumanContentCommon):
+       class Meta:
+         verbose_name = '能量中心 = 你的強弱(索引值5)'
+         verbose_name_plural = '能量中心 = 你的強弱(索引值5)'
+
+# 通道 = 你的天賦 的部分
+class YourRoad(HumanContentCommon):
+      class Meta:
+         verbose_name = '通道 = 你的天賦(索引值6)'
+         verbose_name_plural = '通道 = 你的天賦(索引值6)'
+
+         
