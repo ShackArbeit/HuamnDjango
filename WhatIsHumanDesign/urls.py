@@ -8,6 +8,7 @@ urlpatterns = [
     path("what/3",views.Human_Roles,name='human_roles'),
     path("what/4",views.Human_Auths,name='human_auths'),
     path("what/5",views.Human_Energys,name='human_energy'),
-    path("what/6",views.Human_Roads,name='human_road')
+    path("what/6",views.Human_Roads,name='human_road'),
+    path("what/7",views.Human_Mins,name='human_min')
 ]
 

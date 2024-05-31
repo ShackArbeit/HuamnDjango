@@ -60,4 +60,14 @@ class YourRoad(HumanContentCommon):
          verbose_name = '通道 = 你的天賦(索引值6)'
          verbose_name_plural = '通道 = 你的天賦(索引值6)'
 
-         
+# 輪迴交叉 = 你的命運 的部分
+class YourMin(HumanContentCommon):
+      class Meta:
+         verbose_name = '輪迴交叉 = 你的命運(索引值7)'
+         verbose_name_plural = '輪迴交叉 = 你的命運(索引值7)'
+
+# # Ra Uru Hu = 引進人類圖 的部分
+# class HumanFather(HumanContentCommon):
+#       class Meta:
+#          verbose_name = 'Ra Uru Hu = 引進人類圖(索引值8)'
+#          verbose_name_plural = 'Ra Uru Hu = 引進人類圖(索引值8)'

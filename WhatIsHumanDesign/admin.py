@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import LayoutWhat,YourBooks,YourType,YourRole,YourRoad,YourAuth,YourEnergy
+from .models import LayoutWhat,YourBooks,YourType,YourRole,YourRoad,YourAuth,YourEnergy,YourMin
 
 
 class WhatAdmin(admin.ModelAdmin):
@@ -29,6 +29,13 @@ class Your_Energy(admin.ModelAdmin):
 class Your_Road(admin.ModelAdmin):
       list_display=('id','layout_key','title','content','imgs_url')
 
+# 輪迴交叉 = 你的命運 的部分
+class Your_Min(admin.ModelAdmin):
+      list_display=('id','layout_key','title','content','imgs_url')
+
+# Ra Uru Hu = 引進人類圖 的部分
+class Your_Father(admin.ModelAdmin):
+      list_display=('id','layout_key','title','content','imgs_url')
 
 admin.site.register(LayoutWhat,WhatAdmin)
 admin.site.register(YourBooks,Your_Books)
@@ -37,3 +44,5 @@ admin.site.register(YourRole,Your_Role)
 admin.site.register(YourAuth,Your_Auth)
 admin.site.register(YourEnergy,Your_Energy)
 admin.site.register(YourRoad,Your_Road)
+admin.site.register(YourMin,Your_Min)
+
