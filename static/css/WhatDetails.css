@@ -23,34 +23,31 @@ body{
     color:white;
     position:relative;
     bottom:18px;
-   text-align: center;
+    text-align: center;
     margin:auto;
   
 }
 .HumanDesignMainTitle{
     font-weight: 800;
-    border:2px solid blue;
     margin-bottom: 20px; 
     color:#ff0000;
     margin-top: 20px; 
 }
 .GelleryContainer {
     padding: 0 16px;
-    width: 80%;
     margin: 0 auto;
     color: #fff;
-    border:2px solid blue;
 	background-color: rgba(0,0,0,.6); 
 }
 /* .GelleryRow {
-    width:80%;
+    width:30%;
     margin-bottom:20px; 
     border:2px solid red;
     border-bottom:1px solid #c4c4c4;
-} */
+}  */
 .GelleryImageContainer {
     margin: 0 auto; 
-    width: 100%; 
+    width: 70%; 
 }
 .GelleryContainer img{
         width: 100%;
@@ -78,6 +75,7 @@ body{
     transition: transform 0.3s ease; 
     position: absolute; 
     top: 50%; 
+    width:90%;
     transform: translateY(-50%); 
 }
   @media screen and (max-width: 1280px){

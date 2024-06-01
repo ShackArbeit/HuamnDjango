@@ -6,13 +6,51 @@
 <head>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <!-- <link rel="stylesheet" href="../../static/css/WhatDetails.css"> -->
+      <link rel="stylesheet" href="../../static/css/About.css"> 
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
       <title>AboutJeorme </title>
   </head>
-<body>
-  <h2>
-      近年在台灣多個政論節目活耀，在台灣有高知名度，在兩岸也有豐富採訪經驗的日本記者矢板明夫，昨在臉書發文，透露其離開服務多年的產經新聞，「今天對我來說有特別的意義。因為5月31日，是我在産経新聞服務的最後一天。」他也秀出新名片，日身分將是「日本資深媒體人」，他和家人都會留在台灣，捍衛台灣自由民主，也從事台日交流工作
-  </h2>
+<body style=" background: linear-gradient(to right, 
+#000 0%,
+#333 20%,
+transparent 50%,
+#333 80%,
+#000 100%
+)">
+
+  <div class="wrapper">
+    <div class="center-line">
+      <a href="#" class="scroll-icon">
+      <i class="fas fa-caret-up"></i>   
+      </a>
+    </div>
+    {% for about in abouts %}
+    {% if forloop.counter0|divisibleby:2 %}
+    <div class="row row-1">
+      <section>
+        <i class="icon fas fa-home"></i> 
+        <div class="details">
+          <span class="title">{{about.about_title}}</span>
+          <span>{{about.about_year}}</span>
+        </div>
+        <p>{{about.about_content}}</p>
+      </section>
+    </div>
+    {% else %}
+    <div class="row row-2">
+      <section>
+        <i class="icon fas fa-star"></i>
+        <div class="details">
+          <span class="title">{{about.about_title}}</span>
+          <span>{{about.about_year}}</span>
+        </div>
+        <p>{{about.about_content}}</p>
+      </section>
+    </div>
+    {% endif %}
+   
+    {% endfor %}
+  </div>
 
 </body>
 
