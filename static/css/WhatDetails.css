@@ -7,12 +7,22 @@
 }
 body{
     width:100%;
+    overflow:hidden;
+    background: linear-gradient(to right, 
+    #000 0%,
+    #333 20%,
+    transparent 50%,
+    #333 80%,
+    #000 100%
+  );
 }
 /* 以下為人類圖是什麼入口頁頁面的樣式設定 */
 .HumanDesignWrap{
     width:100%;
     padding-top: 40px;
     color:white;
+    position:relative;
+    bottom:18px;
     background: linear-gradient(to right, 
     #000 0%,
     #333 20%,

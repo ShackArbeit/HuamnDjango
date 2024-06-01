@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import LayoutWhat,YourBooks,YourType,YourRole,YourRoad,YourAuth,YourEnergy,YourMin
+from .models import LayoutWhat,YourBooks,YourType,YourRole,YourRoad,YourAuth,YourEnergy,YourMin,YourFather
 
 
 class WhatAdmin(admin.ModelAdmin):
@@ -45,4 +45,5 @@ admin.site.register(YourAuth,Your_Auth)
 admin.site.register(YourEnergy,Your_Energy)
 admin.site.register(YourRoad,Your_Road)
 admin.site.register(YourMin,Your_Min)
+admin.site.register(YourFather,Your_Father)
 

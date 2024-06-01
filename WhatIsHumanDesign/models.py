@@ -67,7 +67,7 @@ class YourMin(HumanContentCommon):
          verbose_name_plural = '輪迴交叉 = 你的命運(索引值7)'
 
 # # Ra Uru Hu = 引進人類圖 的部分
-# class HumanFather(HumanContentCommon):
-#       class Meta:
-#          verbose_name = 'Ra Uru Hu = 引進人類圖(索引值8)'
-#          verbose_name_plural = 'Ra Uru Hu = 引進人類圖(索引值8)'
+class YourFather(HumanContentCommon):
+     class Meta:
+         verbose_name = 'Ra Uru Hu = 引進人類圖(索引值8)'
+         verbose_name_plural = 'Ra Uru Hu = 引進人類圖(索引值8)'

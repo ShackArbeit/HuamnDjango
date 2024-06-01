@@ -5,7 +5,9 @@
     box-sizing: border-box;
     padding:0
 }
-
+body{
+    overflow:hidden;
+}
 
 /* 以下為人類圖是什麼入口頁頁面的樣式設定 */
 .HumanDesignWrap{

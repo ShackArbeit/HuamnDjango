@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import LayoutWhat,YourBooks,YourType,YourRole,YourAuth,YourEnergy,YourRoad,YourMin
+from .models import LayoutWhat,YourBooks,YourType,YourRole,YourAuth,YourEnergy,YourRoad,YourMin,YourFather
 
 def Hover_Layout(request):
       designs=LayoutWhat.objects.all()
@@ -41,7 +41,7 @@ def Human_Mins(request):
        your_mins=YourMin.objects.all()
        return render(request,'YourMins.html',locals())
 
-# # Ra Uru Hu = 引進人類圖 的部分
-# def Human_Father(request):
-#        your_fathers=HumanFather.objects.all()
-#        return render(request,'YourFather.html',locals())
+ # Ra Uru Hu = 引進人類圖 的部分
+def Human_Father(request):
+       your_fathers=YourFather.objects.all()
+       return render(request,'YourFather.html',locals())

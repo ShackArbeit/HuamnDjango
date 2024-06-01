@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block title %} 人類圖起源  {% endblock %}
+{% block content %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../static/css/WhatDetails.css">
+    <title>人類圖起源 </title>
+</head>
+<body style="background: linear-gradient(to right, #000 0%, #333 20%, transparent 50%, #333 80%, #000 100%);">
+    <div class='HumanDesignWrap'>
+      <h1 class="HumanDesignMainTitle">人類圖起源  </h1>
+        {% for father in  your_fathers %}
+        <div class="GelleryContainer">
+            <div class="row " style="margin-bottom:20px; border-bottom:1px solid #c4c4c4;">
+                {% if forloop.counter0|divisibleby:2 %}
+                <div class="col-md-6 col-xs-12">
+                    <div class="GelleryImageContainer">
+                        <img src={{ father.imgs_url}} class="GelleryImage">
+                    </div>
+                </div>
+                <div class="col-md-6 col-xs-12">
+                    <div class="textContainer">
+                        <h2>{{  father.title }}</h2>
+                        <p>{{  father.content }}</p>
+                    </div>
+                </div>
+                {% else %}
+                <div class="col-md-6 col-xs-12">
+                    <div class="textContainer">
+                        <h2>{{  father.title }}</h2>
+                        <p>{{  father.content }}</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-xs-12">
+                    <div class="GelleryImageContainer">
+                        <img src={{ father.imgs_url}} class="GelleryImage">
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+{% endblock %}
+</html>
