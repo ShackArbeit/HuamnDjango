@@ -23,34 +23,31 @@ body{
     color:white;
     position:relative;
     bottom:18px;
-    background: linear-gradient(to right, 
-    #000 0%,
-    #333 20%,
-    transparent 50%,
-    #333 80%,
-    #000 100%
-  );
-  text-align: center;
-  margin:auto;
-  padding: 64px ;
+   text-align: center;
+    margin:auto;
+  
 }
 .HumanDesignMainTitle{
     font-weight: 800;
-    margin-bottom: 20px;
+    border:2px solid blue;
+    margin-bottom: 20px; 
     color:#ff0000;
-    margin-top: 20px;
+    margin-top: 20px; 
 }
 .GelleryContainer {
     padding: 0 16px;
     width: 80%;
     margin: 0 auto;
     color: #fff;
-	background-color: rgba(0,0,0,.6);
+    border:2px solid blue;
+	background-color: rgba(0,0,0,.6); 
 }
-.GelleryRow {
-    margin-bottom:20px;
+/* .GelleryRow {
+    width:80%;
+    margin-bottom:20px; 
+    border:2px solid red;
     border-bottom:1px solid #c4c4c4;
-}
+} */
 .GelleryImageContainer {
     margin: 0 auto; 
     width: 100%; 

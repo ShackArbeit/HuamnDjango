@@ -20,6 +20,7 @@ urlpatterns = [
     path('', include('homePage.urls')),
     path('',include('freeVideo.urls')),
     path('',include('WhatIsHumanDesign.urls')),
+    path('',include('aboutJeorme.urls')),
     path("admin/", admin.site.urls),
 ]
 

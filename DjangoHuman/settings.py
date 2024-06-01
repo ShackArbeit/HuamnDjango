@@ -28,7 +28,8 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "homePage",
     "freeVideo",
-    "WhatIsHumanDesign"
+    "WhatIsHumanDesign",
+    "aboutJeorme"
 ]
 
 MIDDLEWARE = [
