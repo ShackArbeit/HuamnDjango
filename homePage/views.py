@@ -1,4 +1,6 @@
 from django.shortcuts import render
+from .models import BookingProcess
 
 def index(request):
-      return render(request,'./index.html')
+      bookings=BookingProcess.objects.all()
+      return render(request,'./index.html',{'bookings': bookings})

@@ -21,6 +21,7 @@ urlpatterns = [
     path('',include('freeVideo.urls')),
     path('',include('WhatIsHumanDesign.urls')),
     path('',include('aboutJeorme.urls')),
+    path('',include('ContactUs.urls')),
     path("admin/", admin.site.urls),
 ]
 
