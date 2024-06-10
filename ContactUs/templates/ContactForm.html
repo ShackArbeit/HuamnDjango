@@ -3,12 +3,56 @@
 {% block title %} 聯絡我們 {% endblock %}
 
 {% block content %}
-<body style="background-color: #f9f4e1;">
-    <div class="container-fluid pt-3 " style="background-color: #f9f4e1;
-   position:relative;bottom:18px">
-<div  style="margin:0 auto;max-width:600px;text-align: center;">
-<h3>
-    JKの身心靈遊園車<br>
-</h3>
+
+<body>
+    <div class="container" style="border:none;padding-top:40px">
+        {% if message %}
+        <div class='alert alert-warning'>{{ message }}</div>
+       {% endif %}
+        <div class='card' >     
+                <form method="post" style="
+                 border: none !important;
+            box-shadow: none !important;" >
+                    {% csrf_token %}
+                    <div style="text-align: center;display:block;">
+                    <h2 >歡迎留下您寶貴的意見</h2>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label"
+                        style="font-size: 20px;">
+                        {{ form.user_name.label_tag }}</label>
+                        <div class="col-sm-10" 
+                        >
+                            {{ form.user_name }}
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label" style="font-size: 20px;">{{ form.user_book.label_tag }}</label>
+                        <div class="col-sm-10">
+                            {{ form.user_book }}
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label" style="font-size: 20px;">{{ form.user_email.label_tag }}</label>
+                        <div class="col-sm-10">
+                            {{ form.user_email }}
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label" style="font-size: 20px;">{{ form.user_message.label_tag }}</label>
+                        <div class="col-sm-10">
+                            {{ form.user_message }}
+                        </div>
+                    </div>
+                    <div style="text-align: center;">
+                    <button type="submit" class="btn btn-primary
+                    py-1 px-5 fs-4"
+                    >提交</button>
+                   </div>
+                </form>
+                
+            
+        </div>
+    </div>
 </body>
 {% endblock %}
