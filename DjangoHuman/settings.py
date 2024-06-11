@@ -30,7 +30,8 @@ INSTALLED_APPS = [
     "freeVideo",
     "WhatIsHumanDesign",
     "aboutJeorme",
-    "ContactUs"
+    "ContactUs",
+    "Feedback"
 ]
 
 MIDDLEWARE = [

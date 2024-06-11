@@ -1,0 +1,39 @@
+
+{% extends "base.html" %}
+{% block title %}諮詢朋友回饋{% endblock %}
+{% block content %}
+<div class='container'>
+  <div class='row'>
+    <div class='col-md-12'>
+     <div class='card'>
+      <div class='card-header' align=center>
+        <h3>~~以下是各位朋友的回饋~~</h3>
+      </div>
+     </div>
+    </div>
+  </div>
+
+  <div class="row">
+   {% for p in posts %}   
+     <div class="col-sm-12 col-md-6">
+      <div class='card {%cycle "text-white bg-primary" "bg-info" "bg-warning" "bg-success" %}'>
+        <div class='card-header'>
+         <table width='100%'>
+          <tr>
+            <td>
+              【{{ p.user_name }}】覺得{{ p.value }}
+            </td>
+            <td align=right>
+              <i><small>{{ p.pub_time }}</small></i>
+            </td>
+          </tr>
+         </table>
+        </div>
+        <div class='card-body'>{{ p.message | linebreaks }}</div>
+      </div>
+      <br/>
+     </div>
+   {% endfor %}
+  </div>
+</div>
+{% endblock %}
