@@ -24,3 +24,13 @@ def posting(request):
             post.save()
             return redirect("/list/")
     return render(request, "Posting.html", locals())
+
+def delpost(request, pid=None, del_pass=None):
+    if del_pass and pid:
+        try:
+            post = models.Post.objects.get(id=pid)
+            if post.del_pass == del_pass:
+                post.delete()
+        except:
+            pass
+    return redirect('/')
