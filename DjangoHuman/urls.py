@@ -22,7 +22,6 @@ urlpatterns = [
     path('',include('WhatIsHumanDesign.urls')),
     path('',include('aboutJeorme.urls')),
     path('',include('ContactUs.urls')),
-    path('',include('UserBack.urls')),
     path("admin/", admin.site.urls),
 ]
 
