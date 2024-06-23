@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     "WhatIsHumanDesign",
     "aboutJeorme",
     "ContactUs",
+    "AllBooking"
 ]
 
 MIDDLEWARE = [
