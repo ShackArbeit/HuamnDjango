@@ -1,11 +1,101 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base.html' %}
+
+{% block title %} 相關音檔 {% endblock %}
+<html>
+{% block content %}
 <head>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link href="../../static/css/Book.css" rel="stylesheet" >
       <title>Document</title>
 </head>
 <body>
-      <h1>HomeBooking</h1>
+      <div class='bookContainer'>
+         <table class='datatable'>
+            <thead>
+                  <tr>
+                        <th><span class="forBtable">日期</span></th>
+                                                          <th>2024-06-24<br>星期一</th>
+                                                          <th>2024-06-25<br>星期二</th>
+                                                          <th>2024-06-26<br>星期三</th>
+                                                          <th>2024-06-27<br>星期四</th>
+                                                          <th>2024-06-28<br>星期五</th>
+                                                          <th>2024-06-29<br>星期六</th>
+                                                      </tr>
+              </thead>
+            <tbody>
+                  <tr>
+                        <td>
+                              AM 9:00
+                              <br>
+                              |
+                              <br>
+                              PM 12:00
+                        </td>
+                        <td class='past'>
+                              許承嵐(11:30前報到)
+                        </td>
+                        <td class='past'>
+                              許承嵐(11:30前報到)
+                        </td>
+                        <td class='past'>
+                              許承嵐(11:30前報到)
+                        </td>
+                        <td class='past'>
+                              許承嵐(11:30前報到)
+                        </td>
+                        <td class='past'>
+                              許承嵐(11:30前報到)
+                        </td>
+                        <td class='past'>
+                              許承嵐(11:30前報到)
+                        </td>
+                  </tr>
+                  <tr>
+                        <td>PM14:00<br>|<br>PM17:00</td>
+                                                                                                             <td class="past">
+                              凃俐雯(16:30前報到)<span class="doccall"></span>			           	 	</td>
+                                                                                                                                                 <td class="past">
+                              繆璇(16:30前報到)<span class="doccall"></span>			           	 	</td>
+                                                                                                                                                 <td class="past">
+                              許承嵐(16:30前報到)<span class="doccall"></span>			           	 	</td>
+                                                                                                                                    <td class="active">
+                              凃俐雯(16:30前報到) <span class="doccall"></span>
+                              <div class="rest"><a href="appointment/onlineappointment.php?id=46768&amp;get_time=3">剩餘名額<span>1</span></a></div>
+                        </td>
+                                                                                                                                    <td class="active">
+                              許承嵐(16:30前報到) <span class="doccall"></span>
+                              <div class="rest"><a href="appointment/onlineappointment.php?id=46663&amp;get_time=3">剩餘名額<span>4</span></a></div>
+                        </td>
+                                                                                                                                                <td class="full">
+                              16:30 復健最後報到時間 <span class="doccall"></span>
+                              <div class="rest"><span>預約名額已滿</span></div>
+                              </td>
+                                                                                                
+                  </tr>
+                  <tr>
+                        <td>PM17:30<br>|<br>PM20:30</td>
+                                                                                                             <td class="past">
+                              繆璇(20:00前報到)<span class="doccall"></span>			           	 	</td>
+                                                                                                                                                 <td class="past">
+                              凃俐雯(20:00前報到)<span class="doccall"></span>			           	 	</td>
+                                                                                                                                                 <td class="past">
+                              凃俐雯(20:00前報到)<span class="doccall"></span>			           	 	</td>
+                                                                                                                                                <td class="full">
+                              許承嵐(20:00前報到) <span class="doccall"></span>
+                              <div class="rest"><span>預約名額已滿</span></div>
+                              </td>
+                                                                                                                                                <td class="full">
+                              凃俐雯(20:00前報到) <span class="doccall"></span>
+                              <div class="rest"><span>預約名額已滿</span></div>
+                              </td>
+                                                                                                                                          <td class="empty"></td>
+                                                                                                
+                    </tr>
+            </tbody>
+         </table>
+      </div>
+
 </body>
+{% endblock %}
 </html>
