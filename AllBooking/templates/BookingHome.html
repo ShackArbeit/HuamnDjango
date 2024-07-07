@@ -1,42 +1,50 @@
 {% extends 'base.html' %}
 
-{% block title %} 相關音檔 {% endblock %}
-<html>
+{% block title %} 預約日曆 {% endblock %}
+
 {% block content %}
+<html>
 <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link href="../../static/css/Book.css" rel="stylesheet" >
-      <title>Document</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../../static/css/Book.css" rel="stylesheet">
+    <title>預約日曆</title>
+    <style>
+        table { border-collapse: collapse; width: 100%; }
+        th, td { border: 1px solid #ddd; padding: 8px; }
+        th { background-color: #f2f2f2; }
+    </style>
 </head>
 <body>
-      <h1>預約列表</h1>
-      <div>
-          <a href="{% url 'booking_list' week_offset=week_offset|add:-1 %}">上一週</a>
-          <a href="{% url 'booking_list' week_offset=week_offset|add:1 %}">下一週</a>
-      </div>
-      <table border="1">
-          <tr>
-              <th>日期/時段</th>
-              {% for date in week_dates %}
-                  <th>{{ date|date:"Y-m-d" }}<br>{{ date|date:"l" }}</th>
-              {% endfor %}
-          </tr>
-          {% for timeslot in timeslots %}
-              <tr>
-                  <td>{{ timeslot.slot_description }}</td>
-                  {% for date in week_dates %}
-                      <td>
-                          {% for booking in bookings %}
-                              {% if booking.Date == date and booking.booking_slot == timeslot %}
-                                  {{ booking.booking_description }} - 剩餘名額: {{ booking.is_booking|yesno:"預約名額已滿,還有名額" }}
-                              {% endif %}
-                          {% endfor %}
-                      </td>
-                  {% endfor %}
-              </tr>
-          {% endfor %}
-      </table>
+    <h1>預約日曆</h1>
+    <div>
+        <a href="{% url 'booking_calendar' previous_week %}">上一周</a>
+        <a href="{% url 'booking_calendar' next_week %}">下一周</a>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>日期/時間</th>
+                <th>AM09:00 - PM12:00</th>
+                <th>PM12:30 - PM14:00</th>
+                <th>PM14:30 - PM17:00</th>
+                <th>PM17:30 - PM20:30</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for date in week_dates %}
+                <tr>
+                    <td>{{ date|date:"Y年m月d日" }}</td>
+                    
+                    {% for item in calendar %}
+                        {% if item.day_id == 1 %}
+                        <td>{{ item.booking_description }}</td>
+                        {% endif %} 
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 </body>
-{% endblock %}
 </html>
+{% endblock %}
