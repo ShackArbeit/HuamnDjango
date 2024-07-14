@@ -34,7 +34,7 @@ class TimeSlot(models.Model):
 
     def __str__(self):
         Difference = self.slot_difference()
-        return f"{self.slot_description}-({Difference})"
+        return f"(時段代碼:{self.slot_id})-{self.slot_description}-(共 {Difference} 小時)"
 
 class Booking(models.Model):
     date = models.DateField(verbose_name='日期')

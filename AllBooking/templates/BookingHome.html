@@ -13,6 +13,7 @@
         table { border-collapse: collapse; width: 100%; }
         th, td { border: 1px solid #ddd; padding: 8px; }
         th { background-color: #f2f2f2; }
+        td { height: 60px; }  
     </style>
 </head>
 <body>
@@ -21,27 +22,78 @@
         <a href="{% url 'booking_calendar' previous_week %}">上一周</a>
         <a href="{% url 'booking_calendar' next_week %}">下一周</a>
     </div>
-    <table>
+    <table class="dataTable">
         <thead>
             <tr>
-                <th>日期/時間</th>
-                <th>AM09:00 - PM12:00</th>
-                <th>PM12:30 - PM14:00</th>
-                <th>PM14:30 - PM17:00</th>
-                <th>PM17:30 - PM20:30</th>
+                <th><span class="forBtable">日期</span><span class="forStable">時段</span></th>
+                {% for date in week_dates %}
+                    <th>{{ date|date:"Y年m月d日" }}</th>
+                {% endfor %}
             </tr>
         </thead>
         <tbody>
-            {% for date in week_dates %}
-                <tr>
-                    <td>{{ date|date:"Y年m月d日" }}</td>
-                    
-                    {% for item in calendar %}
-                        {% if item.day_id == 1 %}
-                        <td>{{ item.booking_description }}</td>
-                        {% endif %} 
-                    {% endfor %}
-                </tr>
+            {% for slot_ID in range %}
+                {% if slot_ID == 1 %}  
+                    <tr>
+                        <td>AM09:00<br>|<br>PM12:00</td>
+                        {% for date in week_dates %}
+                            {% for item in bookings %}
+                                {% if slot_ID == item.booking_slot.slot_id %}
+                                    <td style="border:2px solid red">
+                                        {{item.date}}
+                                        {{ item.booking_description }}
+                                    </td>
+                                {% endif %}
+                            {% endfor %}
+                        {% endfor %}
+                    </tr>
+
+                {% elif slot_ID == 2 %} 
+                    <tr>
+                        <td>PM12:30<br>|<br>PM14:00</td>
+                        {% for date in week_dates %}
+                            {% for item in bookings %}
+                                {% if  slot_ID == item.booking_slot.slot_id %}
+                                    <td style="border:2px solid red">
+                                        {{item.date}}
+                                        {{ item.booking_description }}
+                                    </td>
+                                {% endif %}
+                            {% endfor %}
+                        {% endfor %}
+                    </tr>
+
+                {% elif slot_ID == 3 %} 
+                    <tr>
+                        <td>PM14:00<br>|<br>PM17:00</td>
+                        {% for date in week_dates %}
+                            {% for item in bookings %}
+                                {% if slot_ID == item.booking_slot.slot_id %}
+                                    <td style="border:2px solid red">
+                                        {{item.date}}
+                                        {{ item.booking_description }}
+                                    </td>
+                                {% endif %}
+                            {% endfor %}
+                        {% endfor %}
+                    </tr>
+
+                {% else %}
+                    <tr>
+                        <td>PM17:30<br>|<br>PM20:30</td>
+                        {% for date in week_dates %}
+                            {% for item in bookings %}
+                                {%  if slot_ID == item.booking_slot.slot_id %}
+                                    <td style="border:2px solid red">
+                                        {{item.date}}
+                                        {{ item.booking_description }}
+                                    </td>
+                                {% endif %}
+                            {% endfor %}
+                        {% endfor %}
+                    </tr>
+                {% endif %}
+                
             {% endfor %}
         </tbody>
     </table>
