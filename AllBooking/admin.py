@@ -6,7 +6,7 @@ class BookingAdmin(admin.ModelAdmin):
     
 
 class SlotAdmin(admin.ModelAdmin):
-    list_display=('slot_id','start_slot','end_slot','slot_difference','slot_description',)
+    list_display=('slot_id','slot_description',)
     
 admin.site.register(TimeSlot,SlotAdmin)
 admin.site.register(Booking,BookingAdmin)

@@ -1,28 +1,26 @@
 from django.shortcuts import render
 from datetime import datetime, timedelta
-from .models import Booking, TimeSlot
+from .models import Booking
 
-def booking_calendar(request, base_date=None):
-    if base_date is None:
-        base_date = datetime.today()
+def get_week_dates(start_date):
+    return [start_date + timedelta(days=i) for i in range(7)]
+
+def booking_calendar(request, year=None, month=None, day=None):
+    if year is None or month is None or day is None:
+        today = datetime.today()
+        start_date = datetime(today.year, today.month, today.day)
     else:
-        base_date = datetime.strptime(base_date, '%Y-%m-%d')
+        start_date = datetime(year, month, day)
 
-    start_week = base_date - timedelta(days=base_date.weekday())
-    end_week = start_week + timedelta(days=6)
-    week_dates = [start_week + timedelta(days=i) for i in range(7)]
+    week_dates = get_week_dates(start_date)
 
-    bookings = Booking.objects.all()
-    slots = TimeSlot.objects.all()
-    slot_ids = [slot.slot_id for slot in slots]
+    bookings = Booking.objects.filter(date__range=[week_dates[0], week_dates[-1]])
 
     context = {
-        'bookings': bookings,
         'week_dates': week_dates,
-        'previous_week': (week_dates[0] - timedelta(days=7)).strftime('%Y-%m-%d'),
-        'next_week': (week_dates[-1] + timedelta(days=1)).strftime('%Y-%m-%d'),
-        'range': range(1, 5),
-        'slot_ID': slot_ids,
+        'bookings': bookings,
+        'previous_week': start_date - timedelta(days=7),
+        'next_week': start_date + timedelta(days=7),
     }
 
     return render(request, 'BookingHome.html', context)
