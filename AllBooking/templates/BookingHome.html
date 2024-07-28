@@ -31,71 +31,23 @@
                 {% endfor %}
             </tr>
         </thead>
-        <tbody>     
-            <tr>
-                <td>AM09:00<br>|<br>PM12:00</td>
-                {% for date in week_dates %}
-                    <td>
-                        {% for item in bookings %}
-                            {% if item.booking_slot.slot_id == 1 %}
-                                <div style="border:2px solid red">
-                                    {{ item.date }}
-                                    {{ item.booking_description }}
-                                </div>
-                            {% endif %}
-                        {% endfor %}
-                    </td>
-                {% endfor %}
-            </tr>
-                 
-            <tr>
-                <td>PM12:30<br>|<br>PM14:00</td>
-                {% for date in week_dates %}
-                    <td>
-                        {% for item in bookings %}
-                            {% if item.booking_slot.slot_id == 2 %}
-                                <div style="border:2px solid red">
-                                    {{ item.date }}
-                                    {{ item.booking_description }}
-                                </div>
-                            {% endif %}
-                        {% endfor %}
-                    </td>
-                {% endfor %}
-            </tr>
-
-            <tr>
-                <td>PM14:30<br>|<br>PM17:00</td>
-                {% for date in week_dates %}
-                    <td>
-                        {% for item in bookings %}
-                            {% if item.booking_slot.slot_id == 3 %}
-                                <div style="border:2px solid red">
-                                    {{ item.date }}
-                                    {{ item.booking_description }}
-                                </div>
-                            {% endif %}
-                        {% endfor %}
-                    </td>
-                {% endfor %}
-            </tr>
-                
-            <tr>
-                <td>PM17:30<br>|<br>PM20:30</td>
-                {% for date in week_dates %}
-                    <td>
-                        {% for item in bookings %}
-                            {% if item.booking_slot.slot_id == 4 %}
-                                <div style="border:2px solid red">
-                                    {{ item.date }}
-                                    {{ item.booking_description }}
-                                </div>
-                            {% endif %}
-                        {% endfor %}
-                    </td>
-                {% endfor %}
-            </tr>
-                  
+        <tbody>              
+            {% for slot_id, slot_desc in slot_choices %}
+                <tr>
+                    <td>{{ slot_desc }}</td>
+                    {% for date in week_dates %}
+                        <td>
+                            {% for booking in bookings %}
+                                {% if booking.booking_slot.slot_id == slot_id and booking.date == date %}
+                                    <div style="border:2px solid red">
+                                        {{ booking.booking_description }}   
+                                    </div> 
+                                {% endif %}
+                            {% endfor %}
+                        </td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
         </tbody>
     </table>
 </body>
