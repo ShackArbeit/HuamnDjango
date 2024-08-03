@@ -45,11 +45,18 @@
                 <tr style="border:3px #000000 solid;" cellpadding="10" border='1'>
                     <td style="border:3px #000000 solid;" cellpadding="10" border='1'>{{ slot_desc }}</td>
                     {% for date in week_dates %}
-                        <td style="border:3px #000000 solid;" cellpadding="10" border='1'>
+                        <td style="border:3px #000000 solid;text-align: center;" cellpadding="10" border='1' >
                             {% for booking in bookings %}
                                 {% if booking.booking_slot.slot_id == slot_id and booking.date == date %}
-                                    <div>
-                                        {{ booking.booking_description }}   
+                                    <div >
+                                        {{ booking.booking_description }} 
+                                        {% if not booking.is_booking %} 
+                                        <button type="button" class="btn btn-primary mt-3 mb-3"
+                                        
+                                        >可預約</button>
+                                        {% else %} 
+                                        <p style="font-size:20px;color:red;font-weight:800">已被預約</p>
+                                        {% endif %}
                                     </div> 
                                 {% endif %}
                             {% endfor %}

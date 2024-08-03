@@ -10,10 +10,17 @@ def booking_calendar(request):
 def booking_calendar_with_date(request, year, month, day):
     selected_date = datetime.date(year, month, day)
     start_date = selected_date - timedelta(days=selected_date.weekday())
-    end_date = start_date + timedelta(days=6)
-    week_dates = [start_date + timedelta(days=i) for i in range(7)]
+    num_weeks = 3  # 顯示3週
+    week_dates = []
 
-    bookings = Booking.objects.filter(date__range=(start_date, end_date))
+    for week in range(num_weeks):
+        week_start = start_date + timedelta(weeks=week)
+        week_end = week_start + timedelta(days=6)
+        week_dates.append([week_start + timedelta(days=i) for i in range(7)])
+
+    # 查詢這幾週內的所有預約
+    all_dates = [date for week in week_dates for date in week]
+    bookings = Booking.objects.filter(date__in=all_dates)
 
     previous_week = selected_date - timedelta(days=7)
     next_week = selected_date + timedelta(days=7)
