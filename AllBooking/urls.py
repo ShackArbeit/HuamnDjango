@@ -12,6 +12,7 @@ from . import views
 urlpatterns = [
     # path('booking/', views.booking_calendar_with_date, name='booking_calendar'),
     # path('booking/<int:year>/<int:month>/<int:day>/',views.booking_calendar_with_date, name='booking_calendar_with_date'),
-     path('booking/', views.booking_calendar, name='booking_calendar'),
+    path('booking/', views.booking_calendar, name='booking_calendar'),
     path('booking/<int:year>/<int:month>/<int:day>/', views.booking_calendar_with_date, name='booking_calendar_with_date'),
+    path("contact/", views.contact,name='contact'),
 ]
