@@ -16,12 +16,12 @@ def contact(request):
             booking_date = form.cleaned_data['booking_date']
 
             mail_body = f'''
-                回饋者姓名：{user_name}
-                是否第一次預約：{user_book}
-                電子郵件：{user_email}
-                Line ID：{user_line_id}
                 預約描述：{booking_description}
                 預約日期：{booking_date}
+                預約者者姓名：{user_name}
+                是否第一次預約：{user_book}
+                電子郵件：{user_email}
+                Line ID：{user_line_id}     
             '''
             
             email = EmailMessage(
@@ -32,7 +32,7 @@ def contact(request):
             )
             try:
                 email.send()
-                message = "感謝您的來信，我們會儘速處理您的寶貴意見。"
+                message = "感謝您的預約諮詢，我們會儘速處理您。"
             except Exception as e:
                 message = f"郵件發送失敗: {e}"
         else:

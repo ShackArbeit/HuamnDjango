@@ -8,9 +8,21 @@
         {% if message %}
         <div class='alert alert-warning'>{{ message }}</div>
         {% endif %}
-        <h2>請填寫您寶貴的意見</h2>
+        <h2 style="margin-bottom:2rem">請填寫基本資料以利預約</h2>
         <form name="my form" action="/contact/" method="POST">
             {% csrf_token %}
+            <div style="margin-bottom:.5rem;font-size: 24px; font-weight: 500;display:flex;
+            justify-content: center;">
+                <div>預約描述：</div>
+                <div>{{ booking_description }}</div>
+                <input type="hidden" name="booking_description" value="{{ booking_description }}">
+            </div>
+            <div style=" margin-bottom:.5rem;font-size: 24px; font-weight: 500;display:flex;
+            justify-content: center;">      
+                 <div>預約日期：</div>
+                <div>{{ booking_date }}</div>
+                <input type="hidden" name="booking_date" value="{{ booking_date }}">
+            </div>
             <div style="text-align: center; margin-bottom:.5rem">
                 <label for="user_name" style="font-size: 24px; font-weight: 500;" class="form-label">
                     您的姓名：
@@ -23,25 +35,14 @@
                 </label>
                 <input id="user_email" type="email" name="user_email" style="width:50%;margin:0 auto;border:1px solid black;" class="form-control">
             </div>
+            <div style="text-align:center; margin-bottom:.5rem;font-size: 24px;
+            font-weight:800;color:red;
+            ">或是(將會以您填寫的聯絡方式聯繫您)</div>
             <div style="text-align: center; margin-bottom:.5rem">
                 <label for="user_line_id" style="font-size: 24px; font-weight: 500;" class="form-label">
                     您的 Line ID：
                 </label>
                 <input id="user_line_id" type="text" name="user_line_id" style="width:50%;margin:0 auto;border:1px solid black;" class="form-control">
-            </div>
-            <div style="text-align: center; margin-bottom:.5rem">
-                <label style="font-size: 24px; font-weight: 500;" class="form-label">
-                    預約描述：
-                </label>
-                <div>{{ booking_description }}</div>
-                <input type="hidden" name="booking_description" value="{{ booking_description }}">
-            </div>
-            <div style="text-align: center; margin-bottom:.5rem">
-                <label style="font-size: 24px; font-weight: 500;" class="form-label">
-                    預約日期：
-                </label>
-                <div>{{ booking_date }}</div>
-                <input type="hidden" name="booking_date" value="{{ booking_date }}">
             </div>
             <div style="text-align: center; margin-bottom:.5rem">
                 <input id="user_check" type="checkbox" name="user_check" style="border:1px solid black;font-size: 24px;" class="form-check-input">
