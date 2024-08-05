@@ -14,5 +14,6 @@ urlpatterns = [
     # path('booking/<int:year>/<int:month>/<int:day>/',views.booking_calendar_with_date, name='booking_calendar_with_date'),
     path('booking/', views.booking_calendar, name='booking_calendar'),
     path('booking/<int:year>/<int:month>/<int:day>/', views.booking_calendar_with_date, name='booking_calendar_with_date'),
-    path("contact/", views.contact,name='contact'),
+    path('contact/', views.contact,name='contact'),
+    path('send_line_notification/',views.send_line_notification,name='send_line_notification')
 ]

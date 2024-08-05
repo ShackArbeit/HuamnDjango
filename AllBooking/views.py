@@ -1,9 +1,12 @@
 from django.shortcuts import render, redirect
 from django.utils.timezone import localdate, timedelta
 import datetime
+from django.views.decorators.csrf import csrf_exempt
 from .models import Booking
 from django.core.mail import EmailMessage
 from .forms import ContactForm
+from django.http import JsonResponse
+import requests
 
 
 def booking_calendar(request):
@@ -37,38 +40,13 @@ def booking_calendar_with_date(request, year, month, day):
     }
     return render(request, 'BookingHome.html', context)
 
+# 點擊預約按鈕後送至填寫表單的部分
 def contact(request):
     message = ''
     if request.method == 'POST':
         form = ContactForm(request.POST)
         if form.is_valid():
-            user_name = form.cleaned_data['user_name']
-            user_book = '是' if form.cleaned_data['user_book'] else '否'
-            user_email = form.cleaned_data['user_email']
-            user_line_id = form.cleaned_data['user_line_id']
-            booking_description = form.cleaned_data['booking_description']
-            booking_date = form.cleaned_data['booking_date']
-
-            mail_body = f'''
-                預約描述：{booking_description}
-                預約日期：{booking_date}
-                預約者者姓名：{user_name}
-                是否第一次預約：{user_book}
-                電子郵件：{user_email}
-                Line ID：{user_line_id}     
-            '''
-            
-            email = EmailMessage(
-                '來自【人類圖遇見八字】的回饋意見',
-                mail_body,
-                user_email,
-                ['g0972222165@gmail.com']
-            )
-            try:
-                email.send()
-                message = "感謝您的預約諮詢，我們會儘速處理您。"
-            except Exception as e:
-                message = f"郵件發送失敗: {e}"
+            message = "感謝您的預約諮詢，我們會儘速處理您。"
         else:
             message = "請檢查您輸入的資訊是否正確！"
     else:
@@ -85,3 +63,51 @@ def contact(request):
         'booking_description': booking_description,
         'booking_date': booking_date,
     })
+
+# 串接 Line Api 的部分
+@csrf_exempt
+def send_line_notification(request):
+    if request.method == 'POST':
+        user_name = request.POST.get('user_name')
+        user_check = request.POST.get('user_check')
+        user_email = request.POST.get('user_email')
+        user_line_id = request.POST.get('user_line_id')
+        description = request.POST.get('description')
+        date = request.POST.get('date')
+        access_token = 'PiMeWf841CpGqpXJEvk9VEbL7YTmJyh9tBHgVdTvh1h'  
+
+        # 發送 LINE 通知
+        message = f'''
+        預約描述: {description}
+        預約日期: {date}
+        預約者姓名: {user_name}
+        電子郵件: {user_email}
+        Line ID: {user_line_id} 
+        是否第一次預約: {user_check}'''
+
+        headers = {
+            'Authorization': f'Bearer {access_token}',
+            'Content-Type': 'application/x-www-form-urlencoded'
+        }
+        data = {
+            'message': message
+        }
+        response = requests.post('https://notify-api.line.me/api/notify', headers=headers, data=data)
+        
+        # 發送電子郵件
+        mail_body = message
+        email = EmailMessage(
+            '來自【人類圖遇見八字】的預約詢問',
+            mail_body,
+            user_email,
+            ['g0972222165@gmail.com']
+        )
+        try:
+            email.send()
+            email_status = "郵件發送成功"
+        except Exception as e:
+            email_status = f"郵件發送失敗: {e}"
+
+        return JsonResponse({'status': response.status_code, 'response': response.json(), 'email_status': email_status})
+
+    return JsonResponse({'error': 'Invalid request'}, status=400)

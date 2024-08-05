@@ -4,32 +4,33 @@
 
 {% block content %}
 <body>
-    <div class="container text-center pt-4">
+    <div class="container text-center pt-4" >
         {% if message %}
         <div class='alert alert-warning'>{{ message }}</div>
         {% endif %}
-        <h2 style="margin-bottom:2rem">請填寫基本資料以利預約</h2>
-        <form name="my form" action="/contact/" method="POST">
+        <h1 style="margin-bottom:2rem">請填寫基本資料以利預約</h1>
+        <form name="my form" action="/contact/" method="POST" id="contact-form" style="border:1px solid #a3a3a3;
+        padding-top:1rem;padding-bottom:1rem">
             {% csrf_token %}
-            <div style="margin-bottom:.5rem;font-size: 24px; font-weight: 500;display:flex;
+            <div style="margin-bottom:1.5rem;font-size: 24px; font-weight: 500;display:flex;
             justify-content: center;">
                 <div>預約描述：</div>
                 <div>{{ booking_description }}</div>
-                <input type="hidden" name="booking_description" value="{{ booking_description }}">
+                <input type="hidden" name="booking_description" value="{{ booking_description }}" id="booking_description">
             </div>
-            <div style=" margin-bottom:.5rem;font-size: 24px; font-weight: 500;display:flex;
+            <div style=" margin-bottom:1.5rem;font-size: 24px; font-weight: 500;display:flex;
             justify-content: center;">      
                  <div>預約日期：</div>
                 <div>{{ booking_date }}</div>
-                <input type="hidden" name="booking_date" value="{{ booking_date }}">
+                <input type="hidden" name="booking_date" value="{{ booking_date }}" id="booking_date">
             </div>
-            <div style="text-align: center; margin-bottom:.5rem">
+            <div style="margin-bottom:1.5rem">
                 <label for="user_name" style="font-size: 24px; font-weight: 500;" class="form-label">
                     您的姓名：
                 </label>
                 <input id="user_name" type="text" name="user_name" style="width:50%;margin:0 auto;border:1px solid black;" class="form-control">
             </div>
-            <div style="text-align: center; margin-bottom:.5rem">
+            <div style="margin-bottom:1.5rem">
                 <label for="user_email" style="font-size: 24px; font-weight: 500;" class="form-label">
                     您的電子信箱：
                 </label>
@@ -38,13 +39,13 @@
             <div style="text-align:center; margin-bottom:.5rem;font-size: 24px;
             font-weight:800;color:red;
             ">或是(將會以您填寫的聯絡方式聯繫您)</div>
-            <div style="text-align: center; margin-bottom:.5rem">
+            <div style="margin-bottom:1.5rem">
                 <label for="user_line_id" style="font-size: 24px; font-weight: 500;" class="form-label">
                     您的 Line ID：
                 </label>
                 <input id="user_line_id" type="text" name="user_line_id" style="width:50%;margin:0 auto;border:1px solid black;" class="form-control">
             </div>
-            <div style="text-align: center; margin-bottom:.5rem">
+            <div style=" margin-bottom:1.5rem">
                 <input id="user_check" type="checkbox" name="user_check" style="border:1px solid black;font-size: 24px;" class="form-check-input">
                 <label for="user_check" style="font-size: 24px; font-weight: 500;" class="form-check-label">
                     是否第一次預約
@@ -55,5 +56,50 @@
             </div>
         </form>
     </div>
+    <script>
+            function sendNotification(userName, userCheck, userEmail, userLineId, description, date) {
+                fetch('/send_line_notification/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: new URLSearchParams({
+                        'user_name': userName,
+                        'user_check': userCheck,
+                        'user_email': userEmail,
+                        'user_line_id': userLineId,
+                        'description': description,
+                        'date': date
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('成功:', data);
+                    alert('預約信息已發送至 Joromen 的 LINE！');
+                    alert(data.email_status); 
+                    document.getElementById('user_name').value = '';
+                    document.getElementById('user_check').checked = false;
+                    document.getElementById('user_email').value = '';
+                    document.getElementById('user_line_id').value = '';
+                    document.getElementById('booking_description').value = '';
+                    document.getElementById('booking_date').value = '';
+                        })
+                .catch((error) => {
+                    console.error('錯誤:', error);
+                });
+            }
+            document.getElementById('contact-form').addEventListener('submit', function(event) {
+                event.preventDefault();
+        
+                const userName = document.getElementById('user_name').value;
+                const userCheck = document.getElementById('user_check').checked ? '是' : '否';
+                const userEmail = document.getElementById('user_email').value;
+                const userLineId = document.getElementById('user_line_id').value;
+                const description = document.getElementById('booking_description').value;
+                const date = document.getElementById('booking_date').value;
+        
+                sendNotification(userName, userCheck, userEmail, userLineId, description, date);
+            });      
+    </script>
 </body>
 {% endblock %}

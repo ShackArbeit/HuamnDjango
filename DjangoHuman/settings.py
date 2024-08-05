@@ -30,7 +30,6 @@ INSTALLED_APPS = [
     "freeVideo",
     "WhatIsHumanDesign",
     "aboutJeorme",
-    "ContactUs",
     "AllBooking"
 ]
 
