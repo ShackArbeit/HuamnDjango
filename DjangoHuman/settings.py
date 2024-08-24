@@ -71,6 +71,9 @@ DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
         "NAME": BASE_DIR / "db.sqlite3",
+        'OPTIONS': {
+              'timeout':20,
+        }
     }
 }
 
@@ -121,6 +124,9 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL=False
 EMAIL_HOST_USER = "g0972222165@gmail.com"
+
+MEDIA_ROOT = BASE_DIR / "media"
+MEDIA_URL = "/media/"
 
 EMAIL_HOST_PASSWORD = "gcod hyxl ozsr vomi"
 

@@ -2,11 +2,17 @@ from django.shortcuts import render, redirect
 from django.utils.timezone import localdate, timedelta
 import datetime
 from django.views.decorators.csrf import csrf_exempt
-from .models import Booking
+from .models import Booking,File,TimeSlot
 from django.core.mail import EmailMessage
 from .forms import ContactForm
 from django.http import JsonResponse
+import time
 import requests
+import pandas as pd
+import os
+from django.conf import settings
+from django.db import transaction
+
 
 
 def booking_calendar(request):
@@ -111,3 +117,43 @@ def send_line_notification(request):
         return JsonResponse({'status': response.status_code, 'response': response.json(), 'email_status': email_status})
 
     return JsonResponse({'error': 'Invalid request'}, status=400)
+
+
+# 上傳 Excel 部分
+def uplad_file(request):
+    if request.method=='POST':
+        uploaded_file=request.FILES['file']
+        file_instance=File(file=uploaded_file)
+        file_instance.save()
+
+        # 加入短暫延遲
+        time.sleep(2)
+
+        file_path = os.path.join(settings.MEDIA_ROOT, file_instance.file.name)
+
+        try:
+            df = pd.read_excel(file_path)
+            
+            for _, row in df.iterrows():
+                try:
+                    print(f"Processing row: {row}")
+                    timeslot = TimeSlot.objects.get(slot_id=row['booking_slot_id'])
+                    Booking.objects.create(
+                        date=row['date'],
+                        booking_slot=timeslot,
+                        day_id=row['day_id'],
+                        booking_description=row['booking_description'],
+                        is_booking=row['is_booking']
+                    )
+                    time.sleep(1)  # 每次操作後加入延遲，減少資料庫壓力
+                except TimeSlot.DoesNotExist:
+                    print(f"TimeSlot with slot_id {row['booking_slot_id']} does not exist.")
+                except Exception as e:
+                    print(f"Error processing row {row}: {e}")
+
+        except Exception as e:
+            print(f"Error reading Excel file: {e}")
+        
+        print('已經上傳成功了 !')
+        return redirect('contact')
+    return render(request, 'excel_upload.html')

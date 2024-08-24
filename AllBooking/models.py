@@ -39,3 +39,10 @@ class Booking(models.Model):
 
     def __str__(self):
         return f"{self.date}-{self.booking_slot}-{self.day_id}:{self.booking_description}-{self.is_booking}"
+
+
+class File(models.Model):
+    file=models.FileField(upload_to='excel')
+
+    def __str__(self):
+        return self.file.name

@@ -15,5 +15,6 @@ urlpatterns = [
     path('booking/', views.booking_calendar, name='booking_calendar'),
     path('booking/<int:year>/<int:month>/<int:day>/', views.booking_calendar_with_date, name='booking_calendar_with_date'),
     path('contact/', views.contact,name='contact'),
-    path('send_line_notification/',views.send_line_notification,name='send_line_notification')
+    path('send_line_notification/',views.send_line_notification,name='send_line_notification'),
+    path('upload/',views.uplad_file,name='upload_file')
 ]
