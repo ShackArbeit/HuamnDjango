@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}成功上傳{% endblock %}
+
+{% block content %}
+<body>
+      <div style="margin:0 auto;width:500px;height:500px;padding-top:50px">
+          <h1 style="margin-bottom: 50px;">已經成功上傳檔案了 !</h1>  
+          <div style="display:flex;width:100%;justify-content: space-between;">
+            <a href="/admin" style="text-decoration: none;">
+             <button type="button" class="btn btn-outline-primary">
+                  回管理後台
+             </button>
+            </a>
+            <a href="/" style="text-decoration: none;">
+             <button type="button" class="btn btn-outline-success">
+                  回首頁
+             </button>
+            </a>
+          </div>
+      </div>
+
+</body>
+
+{% endblock %}

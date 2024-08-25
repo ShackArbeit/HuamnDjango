@@ -6,6 +6,7 @@ from .models import Booking,File,TimeSlot
 from django.core.mail import EmailMessage
 from .forms import ContactForm
 from django.http import JsonResponse
+from django.contrib.auth.decorators import user_passes_test
 import time
 import requests
 import pandas as pd
@@ -120,6 +121,7 @@ def send_line_notification(request):
 
 
 # 上傳 Excel 部分
+@user_passes_test(lambda u: u.is_superuser)
 def uplad_file(request):
     if request.method=='POST':
         uploaded_file=request.FILES['file']
@@ -133,7 +135,6 @@ def uplad_file(request):
 
         try:
             df = pd.read_excel(file_path)
-            
             for _, row in df.iterrows():
                 try:
                     print(f"Processing row: {row}")
@@ -155,5 +156,11 @@ def uplad_file(request):
             print(f"Error reading Excel file: {e}")
         
         print('已經上傳成功了 !')
-        return redirect('contact')
+        return redirect('success')
     return render(request, 'excel_upload.html')
+
+
+# 上傳成功的部份
+@user_passes_test(lambda u: u.is_superuser)
+def succedd_upload(request):
+    return render(request, 'Success.html')
